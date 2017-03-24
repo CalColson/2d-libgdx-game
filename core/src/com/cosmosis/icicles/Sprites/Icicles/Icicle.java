@@ -13,15 +13,22 @@ public class Icicle {
     public static final String TAG = Icicle.class.getName();
 
     private Vector2 position;
+    private Vector2 velocity;
     private float width;
     private float height;
     private Color color;
 
     public Icicle(Vector2 position) {
         this.position = position;
+        velocity = new Vector2();
         width = Constants.ICICLES_WIDTH;
         height = Constants.ICICLES_HEIGHT;
         color = Constants.ICICLE_COLOR;
+    }
+
+    public void update(float delta) {
+        velocity.y += delta * Constants.ICICLES_ACCELERATION.y;
+        position.y += delta * velocity.y;
     }
 
     public void render(ShapeRenderer renderer) {
@@ -30,7 +37,6 @@ public class Icicle {
         Vector2 pointC = new Vector2(pointA.x + width / 2, pointA.y - height);
 
         renderer.begin(ShapeRenderer.ShapeType.Filled);
-        renderer.setColor(color);
         renderer.triangle(pointA.x, pointA.y, pointB.x, pointB.y, pointC.x, pointC.y);
         renderer.end();
     }

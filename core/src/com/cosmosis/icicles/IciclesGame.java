@@ -6,11 +6,20 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.cosmosis.icicles.Screens.DifficultyScreen;
 import com.cosmosis.icicles.Screens.IciclesScreen;
 
 public class IciclesGame extends Game {
 	@Override
 	public void create() {
-		setScreen(new IciclesScreen());
+		showDifficultyScreen();
 	}
+
+    public void showDifficultyScreen() {
+        setScreen(new DifficultyScreen(this));
+    }
+
+    public void showIciclesScreen(Constants.Difficulty difficulty) {
+        setScreen(new IciclesScreen(this, difficulty));
+    }
 }
